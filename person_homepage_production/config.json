@@ -1,0 +1,111 @@
+{
+  "basicInfo": {
+    "name": "张明",
+    "avatar": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20developer%20portrait%20headshot&image_size=square",
+    "status": "正在学习",
+    "school": "北京大学",
+    "college": "计算机学院",
+    "major": "计算机科学与技术",
+    "degree": "本科",
+    "contact": {
+      "email": "zhangming@example.com",
+      "phone": "138-0000-0000",
+      "wechat": "zhangming_wx"
+    }
+  },
+  "wheelSections": [
+    {
+      "title": "接口能力",
+      "items": ["RESTful API", "GraphQL", "WebSocket", "gRPC"]
+    },
+    {
+      "title": "技术能力",
+      "items": ["Node.js", "React", "Python", "MongoDB"]
+    },
+    {
+      "title": "核心课程",
+      "items": ["数据结构", "算法", "数据库", "操作系统"]
+    },
+    {
+      "title": "非技术能力",
+      "items": ["团队协作", "沟通能力", "项目管理", "问题解决"]
+    }
+  ],
+  "advancedItems": [
+    {
+      "title": "校园实践经历",
+      "items": [
+        {
+          "main": "学生工作",
+          "sub": "班长、学习委员等"
+        },
+        {
+          "main": "实习经历",
+          "sub": "XX公司技术部实习生，校外具体实习"
+        },
+        {
+          "main": "校园项目",
+          "sub": "技术栈JAVA+MySQL等"
+        }
+      ]
+    },
+    {
+      "title": "竞赛/获奖结果",
+      "items": [
+        {
+          "main": "学科竞赛",
+          "sub": "XX省大学生程序设计大赛参与奖，蓝桥杯一等奖"
+        },
+        {
+          "main": "奖学金/荣誉",
+          "sub": "校级一等奖学金"
+        },
+        {
+          "main": "证书",
+          "sub": "计算机二级，CET-4-6"
+        }
+      ]
+    },
+    {
+      "title": "学习/项目成果",
+      "items": [
+        {
+          "main": "课程设计",
+          "sub": "校园二手交易平台交易设计"
+        },
+        {
+          "main": "学习计划",
+          "sub": "正在学习JAVA web框架"
+        },
+        {
+          "main": "计划",
+          "sub": "找到相关offer"
+        }
+      ]
+    }
+  ],
+  "personalInfo": {
+    "hobbies": [
+      {
+        "icon": "fa-code",
+        "title": "编程",
+        "description": "热爱编程，喜欢探索新技术"
+      },
+      {
+        "icon": "fa-book",
+        "title": "阅读",
+        "description": "阅读技术书籍和科幻小说"
+      },
+      {
+        "icon": "fa-camera",
+        "title": "摄影",
+        "description": "记录生活中的美好瞬间"
+      }
+    ],
+    "philosophy": [
+      "持续学习，不断进步",
+      "技术改变世界，创新引领未来",
+      "代码质量是工程师的生命线"
+    ]
+  }
+}

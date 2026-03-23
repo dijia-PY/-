@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">个人主页</div>
+            <div class="nav-menu">
+                <a href="#section1" class="nav-link">基础信息</a>
+                <a href="#section2" class="nav-link">进阶加分</a>
+                <a href="#section3" class="nav-link">个性化</a>
+                <button id="edit-btn" class="edit-btn">
+                    <i class="fas fa-edit"></i> 编辑
+                </button>
+            </div>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section id="section1" class="section">
+            <div class="container">
+                <h2 class="section-title">基础身份标识</h2>
+                
+                <div class="card profile-card animate-on-scroll">
+                    <div class="profile-content">
+                        <div class="avatar-wrapper">
+                            <img id="avatar" src="" alt="头像" class="avatar">
+                        </div>
+                        <div class="profile-info">
+                            <h3 class="profile-name" id="name"></h3>
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span><span id="school"></span> | <span id="college"></span> | <span id="major"></span> | <span id="degree"></span></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <span>目前状态：<span id="status"></span></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span id="email"></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span id="phone"></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fab fa-weixin"></i>
+                                    <span id="wechat"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-section">
+                    <div class="wheel-card animate-on-scroll">
+                        <h3 class="card-title">能力展示</h3>
+                        <div class="wheel-container">
+                            <div class="wheel">
+                                <div class="wheel-section" data-index="0">
+                                    <span>接口能力</span>
+                                </div>
+                                <div class="wheel-section" data-index="1">
+                                    <span>技术能力</span>
+                                </div>
+                                <div class="wheel-section" data-index="2">
+                                    <span>核心课程</span>
+                                </div>
+                                <div class="wheel-section" data-index="3">
+                                    <span>非技术能力</span>
+                                </div>
+                            </div>
+                            <div class="wheel-center">
+                                <span>点击</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card animate-on-scroll">
+                        <h3 class="card-title">详细信息</h3>
+                        <div class="content-wrapper">
+                            <div class="content-section active" data-index="0">
+                                <h4 class="content-title">接口能力</h4>
+                                <ul class="content-list" id="interface-capabilities"></ul>
+                            </div>
+                            <div class="content-section" data-index="1">
+                                <h4 class="content-title">技术能力</h4>
+                                <ul class="content-list" id="tech-capabilities"></ul>
+                            </div>
+                            <div class="content-section" data-index="2">
+                                <h4 class="content-title">核心课程</h4>
+                                <ul class="content-list" id="core-courses"></ul>
+                            </div>
+                            <div class="content-section" data-index="3">
+                                <h4 class="content-title">非技术能力</h4>
+                                <ul class="content-list" id="non-tech-capabilities"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">进阶加分项</h2>
+                <div id="wheel-3d-container"></div>
+            </div>
+        </section>
+
+        <section id="section3" class="section">
+            <div class="container">
+                <h2 class="section-title">个性化补充</h2>
+                
+                <div class="personal-section">
+                    <div class="hobbies-section animate-on-scroll">
+                        <h3 class="card-title">兴趣爱好</h3>
+                        <div class="hobbies-grid" id="hobbies-container"></div>
+                    </div>
+                    
+                    <div class="philosophy-section animate-on-scroll">
+                        <h3 class="card-title">个人理念</h3>
+                        <div class="philosophy-list" id="philosophy-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 个人主页. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 配置数据
+        const configData = {
+  "basicInfo": {
+    "name": "张明",
+    "avatar": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20developer%20portrait%20headshot&image_size=square",
+    "status": "正在学习",
+    "school": "北京大学",
+    "college": "计算机学院",
+    "major": "计算机科学与技术",
+    "degree": "本科",
+    "contact": {
+      "email": "zhangming@example.com",
+      "phone": "138-0000-0000",
+      "wechat": "zhangming_wx"
+    }
+  },
+  "wheelSections": [
+    {
+      "title": "接口能力",
+      "items": ["RESTful API", "GraphQL", "WebSocket", "gRPC"]
+    },
+    {
+      "title": "技术能力",
+      "items": ["Node.js", "React", "Python", "MongoDB"]
+    },
+    {
+      "title": "核心课程",
+      "items": ["数据结构", "算法", "数据库", "操作系统"]
+    },
+    {
+      "title": "非技术能力",
+      "items": ["团队协作", "沟通能力", "项目管理", "问题解决"]
+    }
+  ],
+  "advancedItems": [
+    {
+      "title": "校园实践经历",
+      "items": [
+        {
+          "main": "学生工作",
+          "sub": "班长、学习委员等"
+        },
+        {
+          "main": "实习经历",
+          "sub": "XX公司技术部实习生，校外具体实习"
+        },
+        {
+          "main": "校园项目",
+          "sub": "技术栈JAVA+MySQL等"
+        }
+      ]
+    },
+    {
+      "title": "竞赛/获奖结果",
+      "items": [
+        {
+          "main": "学科竞赛",
+          "sub": "XX省大学生程序设计大赛参与奖，蓝桥杯一等奖"
+        },
+        {
+          "main": "奖学金/荣誉",
+          "sub": "校级一等奖学金"
+        },
+        {
+          "main": "证书",
+          "sub": "计算机二级，CET-4-6"
+        }
+      ]
+    },
+    {
+      "title": "学习/项目成果",
+      "items": [
+        {
+          "main": "课程设计",
+          "sub": "校园二手交易平台交易设计"
+        },
+        {
+          "main": "学习计划",
+          "sub": "正在学习JAVA web框架"
+        },
+        {
+          "main": "计划",
+          "sub": "找到相关offer"
+        }
+      ]
+    }
+  ],
+  "personalInfo": {
+    "hobbies": [
+      {
+        "icon": "fa-code",
+        "title": "编程",
+        "description": "热爱编程，喜欢探索新技术"
+      },
+      {
+        "icon": "fa-book",
+        "title": "阅读",
+        "description": "阅读技术书籍和科幻小说"
+      },
+      {
+        "icon": "fa-camera",
+        "title": "摄影",
+        "description": "记录生活中的美好瞬间"
+      }
+    ],
+    "philosophy": [
+      "持续学习，不断进步",
+      "技术改变世界，创新引领未来",
+      "代码质量是工程师的生命线"
+    ]
+  }
+};
+
+        // 使用配置数据
+        const data = configData;
+        document.getElementById('name').textContent = data.basicInfo.name;
+        document.getElementById('avatar').src = data.basicInfo.avatar;
+        document.getElementById('status').textContent = data.basicInfo.status;
+        document.getElementById('school').textContent = data.basicInfo.school;
+        document.getElementById('college').textContent = data.basicInfo.college;
+        document.getElementById('major').textContent = data.basicInfo.major;
+        document.getElementById('degree').textContent = data.basicInfo.degree;
+        document.getElementById('email').textContent = data.basicInfo.contact.email;
+        document.getElementById('phone').textContent = data.basicInfo.contact.phone;
+        document.getElementById('wechat').textContent = data.basicInfo.contact.wechat;
+        
+        const interfaceCapabilities = document.getElementById('interface-capabilities');
+        const techCapabilities = document.getElementById('tech-capabilities');
+        const coreCourses = document.getElementById('core-courses');
+        const nonTechCapabilities = document.getElementById('non-tech-capabilities');
+        
+        data.wheelSections[0].items.forEach(item => {
+            interfaceCapabilities.innerHTML += `<li class="list-item"><i class="fas fa-check-circle"></i><span>${item}</span></li>`;
+        });
+        
+        data.wheelSections[1].items.forEach(item => {
+            techCapabilities.innerHTML += `<li class="list-item"><i class="fas fa-check-circle"></i><span>${item}</span></li>`;
+        });
+        
+        data.wheelSections[2].items.forEach(item => {
+            coreCourses.innerHTML += `<li class="list-item"><i class="fas fa-check-circle"></i><span>${item}</span></li>`;
+        });
+        
+        data.wheelSections[3].items.forEach(item => {
+            nonTechCapabilities.innerHTML += `<li class="list-item"><i class="fas fa-check-circle"></i><span>${item}</span></li>`;
+        });
+        
+        const wheel3dContainer = document.getElementById('wheel-3d-container');
+        data.advancedItems.forEach((item, index) => {
+            let itemsHtml = item.items.map((subItem, subIndex) => `
+                <div class="wheel-3d-item" data-index="${subIndex}">
+                    <div class="wheel-3d-content">
+                        <div class="wheel-3d-main">${subItem.main}</div>
+                        <div class="wheel-3d-sub">[${subItem.sub}]</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            wheel3dContainer.innerHTML += `
+                <div class="wheel-3d-wrapper animate-on-scroll" data-wheel="${index}">
+                    <h3 class="wheel-3d-title">${item.title}</h3>
+                    <div class="wheel-3d">
+                        ${itemsHtml}
+                    </div>
+                    <div class="wheel-3d-controls">
+                        <button class="wheel-3d-btn wheel-3d-prev" data-wheel="${index}">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="wheel-3d-btn wheel-3d-next" data-wheel="${index}">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        const hobbiesContainer = document.getElementById('hobbies-container');
+        data.personalInfo.hobbies.forEach(hobby => {
+            hobbiesContainer.innerHTML += `
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas ${hobby.icon}"></i>
+                    </div>
+                    <h4 class="hobby-title">${hobby.title}</h4>
+                    <p class="hobby-description">${hobby.description}</p>
+                </div>
+            `;
+        });
+        
+        const philosophyContainer = document.getElementById('philosophy-container');
+        data.personalInfo.philosophy.forEach(phrase => {
+            philosophyContainer.innerHTML += `
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="philosophy-text">${phrase}</p>
+                </div>
+            `;
+        });
+        
+        initWheel3D();
+        initScrollAnimations();
+    </script>
+    
+    <!-- 编辑表单模态框 -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑个人信息</h3>
+                <button id="close-modal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form">
+                    <div class="form-section">
+                        <h4>基础信息</h4>
+                        <div class="form-group">
+                            <label for="edit-name">姓名</label>
+                            <input type="text" id="edit-name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-avatar">头像URL</label>
+                            <input type="text" id="edit-avatar" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-status">学习状态</label>
+                            <input type="text" id="edit-status" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-school">学校</label>
+                            <input type="text" id="edit-school" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-college">学院</label>
+                            <input type="text" id="edit-college" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-major">专业</label>
+                            <input type="text" id="edit-major" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-degree">学历</label>
+                            <input type="text" id="edit-degree" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">邮箱</label>
+                            <input type="email" id="edit-email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-phone">电话</label>
+                            <input type="text" id="edit-phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-wechat">微信</label>
+                            <input type="text" id="edit-wechat" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4>兴趣爱好</h4>
+                        <div id="hobbies-container-edit">
+                            <!-- 动态生成兴趣爱好编辑表单 -->
+                        </div>
+                        <button type="button" id="add-hobby" class="add-btn">
+                            <i class="fas fa-plus"></i> 添加爱好
+                        </button>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4>个人理念</h4>
+                        <div id="philosophy-container-edit">
+                            <!-- 动态生成个人理念编辑表单 -->
+                        </div>
+                        <button type="button" id="add-philosophy" class="add-btn">
+                            <i class="fas fa-plus"></i> 添加理念
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="save-btn" class="save-btn">保存修改</button>
+                <button id="cancel-btn" class="cancel-btn">取消</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
